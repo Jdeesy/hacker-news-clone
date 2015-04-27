@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @user = @post.user
+    @author = @post.user
   end
 
   def new
@@ -15,6 +15,12 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @author = @post.user
+    if @author == current_user
+      render 'edit'
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -29,7 +35,8 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update_attributes(post_params)
+    @author = @post.user
+    if @author == current_user && @post.update_attributes(post_params)
       redirect_to @post
     else
       render 'edit'
@@ -38,7 +45,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
+    @author = @post.user
+    @post.destroy if @author == current_user
     redirect_to root_path
   end
 

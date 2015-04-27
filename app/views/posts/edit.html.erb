@@ -1,3 +1,5 @@
 <h1>Edit Post</h1>
 
 <%= render 'form' %>
+
+<%= link_to 'Delete Post', post_path(@post), method: :delete, data: { confirm: "There's no turning back!! Are you REALLY sure?" } %>
