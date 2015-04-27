@@ -1,0 +1,5 @@
+<h1>Edit User</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Delete', user_path(@user), method: :delete, data: { confirm: "There's no turning back!! Are you REALLY sure?" } %>
