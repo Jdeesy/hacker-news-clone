@@ -12,9 +12,12 @@ class User < ActiveRecord::Base
     self.password_digest = @password
   end
 
-  def self.authenticate(email, password)
-    @current_user = User.find_by_email(email)
-    return @current_user if @current_user && @current_user.password == password
+  def self.authenticate(session_params)
+    @current_user = User.find_by_email(session_params[:email])
+    return @current_user if @current_user && @current_user.password == session_params[:password]
   end
 
+  before_save do
+    self.email.downcase! if self.email
+  end
 end
