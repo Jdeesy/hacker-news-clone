@@ -1,0 +1,6 @@
+<article>
+  <%= link_to "#{post.title}", post %>
+  <%= link_to "#{post.user.name}", post.user, class: 'username' %>
+  <span class='timestamp'><%= post.created_at %></span>
+  <span class='comment-count'>Comments: <%= post.comments.count %></span>
+</article>
