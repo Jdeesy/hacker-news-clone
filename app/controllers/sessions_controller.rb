@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def create
     if user = User.authenticate(session_params)
-      session[:user_id] = user.id
+      log_in(user)
       redirect_to user
     else
       render 'new'
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    log_out
     redirect_to root_path
   end
 
