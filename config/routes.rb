@@ -1,11 +1,25 @@
 Rails.application.routes.draw do
 
   root 'application#index'
+  get 'posts' => 'posts#index'
+  get 'posts/:id' => 'posts#show', as: :post
+  get 'posts/:id/edit' => 'posts#edit', as: :edit_post
+  patch 'posts/:id' => 'posts#update'
+  delete 'posts/:id' => 'posts#destroy'
+  get 'posts/new' => 'posts#new', as: :new_post
+  post 'posts' => 'posts#create'
+
+  get 'posts/:post_id/comments' => 'comments#index', as: :post_comments
+  get 'posts/:post_id/comments/:id/edit' => 'comments#edit', as: :edit_post_comment
+  patch 'posts/:post_id/comments/:id' => 'comments#update'
+  delete 'posts/:post_id/comments/:id' => 'comments#destroy'
+  get 'posts/:post_id/comments/:id' => 'comments#show', as: :post_comment
+  post 'posts/:post_id/comments/' => 'comments#create'
 
   resources :users
-  resources :posts do
-    resources :comments
-  end
+  # resources :posts do
+    # resources :comments
+  # end
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
