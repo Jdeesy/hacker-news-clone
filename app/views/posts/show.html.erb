@@ -6,4 +6,10 @@
   <%= link_to "Edit", edit_post_path(@post) %>
 <% end %>
 
-<%= link_to "Back to All Posts", posts_path %>
+<% @comments.each do |comment| %>
+
+  <p><%= comment.text %></p>
+
+<% end %>
+
+<%= render 'comments/new' %>
