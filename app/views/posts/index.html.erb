@@ -1,10 +1,13 @@
 <h2>All Posts</h2>
 
-<ul>
   <% @posts.each do |post| %>
-    <li><%= link_to "#{post.title}", post %></li>
+    <article>
+      <%= link_to "#{post.title}", post %>
+      <%= link_to "#{post.user.name}", post.user, class: 'username' %>
+      <span class='timestamp'><%= post.created_at %></span>
+      <span class='comment-count'>Comments: <%= post.comments.count %></span>
+    </article>
   <% end %>
-</ul>
 
 <% if current_user %>
   <%= link_to "Create New Post", new_post_path %>

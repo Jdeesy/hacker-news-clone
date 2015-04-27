@@ -15,11 +15,8 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user = current_user
     @comment.post = @post
-    if @comment.save
-      redirect_to @post
-    else
-      render 'post/show'
-    end
+    @comment.save
+    redirect_to @post
   end
 
   def update
