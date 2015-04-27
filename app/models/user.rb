@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   validates :name, :email, :password, presence: true
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def password
     @password ||= BCrypt::Password.new(self.password_digest)
