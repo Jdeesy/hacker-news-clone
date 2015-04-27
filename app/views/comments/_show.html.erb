@@ -1,0 +1,6 @@
+<article>
+  <span><%= comment.text %></span><br>
+  <%= link_to "#{comment.user.name}", comment.user, class: 'username' %>
+  <span class='timestamp'><%= comment.created_at %></span>
+  <%= link_to "Edit", edit_post_comment_path(comment.post, comment) %>
+</article>

@@ -8,11 +8,7 @@
 
 <% @comments.each do |comment| %>
 
-  <article>
-    <span><%= comment.text %></span><br>
-    <%= link_to "#{comment.user.name}", comment.user, class: 'username' %>
-    <span class='timestamp'><%= comment.created_at %></span>
-  </article>
+ <%= render partial: "comments/show", locals: {comment: comment} %>
 
 <% end %>
 

@@ -1,2 +1,3 @@
 <h2>Edit Comment</h2>
 <%= render 'form' %>
+<%= link_to 'Delete Comment', post_comment_path(@comment.post, @comment), method: :delete, data: { confirm: "There's no turning back!! Are you REALLY sure?" } %>

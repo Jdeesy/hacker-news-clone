@@ -49,7 +49,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @author = @post.user
     @post.destroy if @author == current_user
-    redirect_to root_path
+    redirect_to posts_path
   end
 
   private

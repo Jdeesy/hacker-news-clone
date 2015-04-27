@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
 
   def edit
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @author = @comment.user
     if @author == current_user
@@ -20,20 +21,23 @@ class CommentsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @author = @comment.user
     if @author == current_user && @comment.update_attributes(comment_params)
-      redirect_to @comment
+      redirect_to @post
     else
       render 'edit'
     end
   end
 
   def destroy
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
+
     @author = @comment.user
     @comment.destroy if @author == current_user
-    redirect_to root_path
+    redirect_to @post
   end
 
   private
